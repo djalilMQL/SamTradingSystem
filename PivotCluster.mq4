@@ -26,7 +26,6 @@ int OnInit()
    SetIndexStyle(2,DRAW_LINE,STYLE_SOLID,2);
    SetIndexLabel(2,"dnPP");
 
-
    if(
       Period()==PERIOD_M1
       || Period()==PERIOD_M5) period=PERIOD_H4;
@@ -43,9 +42,6 @@ int OnInit()
       Period()==PERIOD_D1
       || Period()==PERIOD_W1
       || Period()==PERIOD_MN1)   period = PERIOD_MN1;
-
-
-
 //---
    return(INIT_SUCCEEDED);
   }
@@ -70,45 +66,26 @@ int OnCalculate(const int rates_total,const int prev_calculated,
          double egpp = (iHigh("EURGBP",period,shift)+iLow("EURGBP",period,shift)+iClose("EURGBP",period,shift))/3;
          double gupp = (iHigh("GBPUSD",period,shift)+iLow("GBPUSD",period,shift)+iClose("GBPUSD",period,shift))/3;
          if(egpp!=0 && gupp!=0)Pivots[0]=egpp*gupp;
-/*
-      double gbpr1 = ((egpp*gupp)*2)-(iLow("EURGBP",period,shift)*iLow("GBPUSD",period,shift));
-      double gbps1 = ((egpp*gupp)*2)-(iHigh("EURGBP",period,shift)*iHigh("GBPUSD",period,shift));
-      */
+
          double eapp = (iHigh("EURAUD",period,shift)+iLow("EURAUD",period,shift)+iClose("EURAUD",period,shift))/3;
          double aupp = (iHigh("AUDUSD",period,shift)+iLow("AUDUSD",period,shift)+iClose("AUDUSD",period,shift))/3;
          if(eapp!=0 && aupp!=0)Pivots[1]=eapp*aupp;
-/*
-      double audr1 = ((eapp*aupp)*2)-(iLow("EURAUD",period,shift)*iLow("AUDUSD",period,shift));
-      double auds1 = ((eapp*aupp)*2)-(iHigh("EURAUD",period,shift)*iHigh("AUDUSD",period,shift));
-      */
+
          double enpp = (iHigh("EURNZD",period,shift)+iLow("EURNZD",period,shift)+iClose("EURNZD",period,shift))/3;
          double nupp = (iHigh("NZDUSD",period,shift)+iLow("NZDUSD",period,shift)+iClose("NZDUSD",period,shift))/3;
          if(enpp!=0 && nupp!=0)Pivots[2]=enpp*nupp;
-/*
-      double nzdr1 = ((enpp*nupp)*2)-(iLow("EURNZD",period,shift)*iLow("NZDUSD",period,shift));
-      double nzds1 = ((enpp*nupp)*2)-(iHigh("EURNZD",period,shift)*iHigh("NZDUSD",period,shift));
-      */
+
          double ejpp = (iHigh("EURJPY",period,shift)+iLow("EURJPY",period,shift)+iClose("EURJPY",period,shift))/3;
          double ujpp = (iHigh("USDJPY",period,shift)+iLow("USDJPY",period,shift)+iClose("USDJPY",period,shift))/3;
          if(ejpp!=0 && ujpp!=0)Pivots[3]=ejpp/ujpp;
-/*
-      double jpyr1 = ((ejpp/ujpp)*2)-(iLow("EURJPY",period,shift)/iLow("USDJPY",period,shift));
-      double jpys1 = ((ejpp/ujpp)*2)-(iHigh("EURJPY",period,shift)/iHigh("USDJPY",period,shift));
-      */
+
          double echpp = (iHigh("EURCHF",period,shift)+iLow("EURCHF",period,shift)+iClose("EURCHF",period,shift))/3;
          double uchpp = (iHigh("USDCHF",period,shift)+iLow("USDCHF",period,shift)+iClose("USDCHF",period,shift))/3;
          if(echpp!=0 && uchpp!=0)Pivots[4]=echpp/uchpp;
-/*
-      double chfr1 = ((echpp/uchpp)*2)-(iLow("EURCHF",period,shift)/iLow("USDCHF",period,shift));
-      double chfs1 = ((echpp/uchpp)*2)-(iHigh("EURCHF",period,shift)/iHigh("USDCHF",period,shift));
-      */
+
          double ecdpp = (iHigh("EURCAD",period,shift)+iLow("EURCAD",period,shift)+iClose("EURCAD",period,shift))/3;
          double ucdpp = (iHigh("USDCAD",period,shift)+iLow("USDCAD",period,shift)+iClose("USDCAD",period,shift))/3;
          if(ecdpp!=0 && ucdpp!=0)Pivots[5]=ecdpp/ucdpp;
-/*
-      double cadr1 = ((ecdpp/ucdpp)*2)-(iLow("EURCAD",period,shift)/iLow("USDCAD",period,shift));
-      double cads1 = ((ecdpp/ucdpp)*2)-(iHigh("EURCAD",period,shift)/iHigh("USDCAD",period,shift));
-      */
 
          ArraySort(Pivots);
          ppup[i] = Pivots[5];
